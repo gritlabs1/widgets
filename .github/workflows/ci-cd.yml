@@ -47,5 +47,5 @@ jobs:
         HOST=${SSH_HOST:-$DEPLOY_HOST}
 
         # Adjust path to your actual Angular output directory
-        scp -o StrictHostKeyChecking=no -r ./dist/* \
+        scp -o StrictHostKeyChecking=no -r ./dist/my-workspace/broswer/* \
             support@$HOST:"$DEPLOY_PATH/"
