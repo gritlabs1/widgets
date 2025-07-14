@@ -1,14 +1,13 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { CorsTestComponent } from './cors-test.component';
+import { TaskListComponent } from './tasks/task-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HttpClientModule, CorsTestComponent],
+  standalone: true,
+  imports: [RouterOutlet, HttpClientModule, TaskListComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('my-workspace');
-}
+export class App {}
