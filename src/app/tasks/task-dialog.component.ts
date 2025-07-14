@@ -34,9 +34,6 @@ export class TaskDialogComponent {
     }
   }
 
-  cancel() {
-    this.dialogRef.close();
-  }
 
   submit() {
     if (this.form.valid) {
