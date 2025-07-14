@@ -34,6 +34,12 @@ export class TaskDialogComponent {
     }
   }
 
+  cancel(): void {
+    // Add logic to close the dialog, if you are using Angular Material Dialog
+    // For example:
+    this.dialogRef.close();
+  }
+
 
   submit() {
     if (this.form.valid) {
