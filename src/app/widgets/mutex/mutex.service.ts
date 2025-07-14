@@ -4,7 +4,7 @@ import { Observable, catchError, of, tap } from 'rxjs';
 
 export interface MutexState {
   panelOn: boolean;
-  input: string | null;
+  selectedInput: string | null;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -34,12 +34,20 @@ export class MutexService {
     const raw = localStorage.getItem(this.storageKey);
     if (raw) {
       try {
-        return JSON.parse(raw) as MutexState;
+        const parsed = JSON.parse(raw) as MutexState | { panelOn: boolean; input: string | null };
+        if (parsed && (parsed as any).selectedInput !== undefined) {
+          return parsed as MutexState;
+        }
+        if (parsed && (parsed as any).input !== undefined) {
+          const { panelOn, input } = parsed as any;
+          return { panelOn, selectedInput: input };
+        }
+        return parsed as MutexState;
       } catch {
         // ignore parse error
       }
     }
-    return { panelOn: false, input: null };
+    return { panelOn: false, selectedInput: null };
   }
 
   private saveLocalState(state: MutexState) {
