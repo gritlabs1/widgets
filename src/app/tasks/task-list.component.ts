@@ -76,6 +76,10 @@ export class TaskListComponent implements OnInit {
   }
 
   editTask(task: Task) {
+    if (!task.id) {
+      this.snackBar.open('Invalid task selected', 'Close', { duration: 3000 });
+      return;
+    }
     const dialogRef = this.dialog.open(TaskDialogComponent, { data: { title: task.title, description: task.description } });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
