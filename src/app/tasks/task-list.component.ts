@@ -94,14 +94,14 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  deleteTask(task: Task) {
+  deleteTask(id: string) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: { title: 'Delete Task', message: 'Are you sure you want to delete this task?' }
     });
     dialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
         this.loading = true;
-        this.taskService.deleteTask(task.id).subscribe({
+        this.taskService.deleteTask(id).subscribe({
           next: () => {
             this.snackBar.open('Task deleted', 'Close', { duration: 3000 });
             this.loadTasks();
