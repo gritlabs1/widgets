@@ -34,6 +34,7 @@ export class TaskDialogComponent {
     }
   }
 
+
   submit() {
     if (this.form.valid) {
       this.dialogRef.close(this.form.value);
