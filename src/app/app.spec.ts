@@ -14,10 +14,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render task list heading', () => {
+  it('should render router outlet', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('Task List');
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });
