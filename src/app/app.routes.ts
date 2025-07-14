@@ -1,11 +1,52 @@
 import { Routes } from '@angular/router';
-import { TaskListComponent } from './tasks/task-list.component';
 
 export const routes: Routes = [
-  { path: '', component: TaskListComponent },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./showcase/widgets-showcase.component').then(
+        (m) => m.WidgetsShowcaseComponent
+      ),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./showcase/welcome.component').then((m) => m.WelcomeComponent),
+      },
+      {
+        path: 'widget/task-list',
+        loadComponent: () =>
+          import('./tasks/task-list.component').then((m) => m.TaskListComponent),
+      },
+      {
+        path: 'widget/mutex',
+        loadComponent: () =>
+          import('./widgets/mutex/mutex-buttons.component').then(
+            (m) => m.MutexButtonsComponent
+          ),
+      },
+      {
+        path: 'widget/cors-test',
+        loadComponent: () =>
+          import('./cors-test.component').then((m) => m.CorsTestComponent),
+      },
+    ],
+  },
+  {
+    path: 'task-list',
+    loadComponent: () =>
+      import('./tasks/task-list.component').then((m) => m.TaskListComponent),
+  },
   {
     path: 'mutex',
-    loadChildren: () =>
-      import('./widgets/mutex/mutex.module').then((m) => m.MutexModule),
+    loadComponent: () =>
+      import('./widgets/mutex/mutex-buttons.component').then(
+        (m) => m.MutexButtonsComponent
+      ),
+  },
+  {
+    path: 'cors-test',
+    loadComponent: () =>
+      import('./cors-test.component').then((m) => m.CorsTestComponent),
   },
 ];
