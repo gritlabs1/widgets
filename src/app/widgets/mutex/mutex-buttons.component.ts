@@ -22,7 +22,7 @@ export class MutexButtonsComponent implements OnInit {
   ngOnInit() {
     this.mutexService.getState().subscribe((state) => {
       this.panelOn = state.panelOn;
-      this.selectedInput = state.input;
+      this.selectedInput = state.selectedInput;
     });
   }
 
@@ -52,7 +52,7 @@ export class MutexButtonsComponent implements OnInit {
   private persistState() {
     const state: MutexState = {
       panelOn: this.panelOn,
-      input: this.selectedInput
+      selectedInput: this.selectedInput
     };
     this.mutexService.setState(state).subscribe();
   }
