@@ -1,0 +1,16 @@
+.mutex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.inputs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.status {
+  font-weight: bold;
+}
