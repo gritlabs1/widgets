@@ -30,6 +30,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./cors-test.component').then((m) => m.CorsTestComponent),
       },
+      {
+        path: 'widget/ag-grid-demo',
+        loadComponent: () =>
+          import('./widgets/ag-grid-crypto/ag-grid-crypto-demo.component').then(
+            (m) => m.AgGridCryptoDemoComponent
+          ),
+      },
     ],
   },
   {
@@ -48,5 +55,12 @@ export const routes: Routes = [
     path: 'cors-test',
     loadComponent: () =>
       import('./cors-test.component').then((m) => m.CorsTestComponent),
+  },
+  {
+    path: 'ag-grid-demo',
+    loadComponent: () =>
+      import('./widgets/ag-grid-crypto/ag-grid-crypto-demo.component').then(
+        (m) => m.AgGridCryptoDemoComponent
+      ),
   },
 ];
