@@ -19,6 +19,12 @@
     ]
   },
   "private": true,
+  "overrides": {
+    "esbuild": "^0.25.6",
+    "@angular/build": {
+      "esbuild": "^0.25.6"
+    }
+  },
   "dependencies": {
     "@angular/animations": "^20.1.0",
     "@angular/cdk": "^20.1.0",
