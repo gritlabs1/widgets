@@ -7,7 +7,8 @@
     <div class="inputs" role="radiogroup">
       <button
         *ngFor="let input of inputs"
-        mat-fab-extended
+        mat-fab
+        extended
         [color]="selectedInput === input.label ? 'accent' : undefined"
         [disabled]="!panelOn"
         (click)="chooseInput(input.label)"
