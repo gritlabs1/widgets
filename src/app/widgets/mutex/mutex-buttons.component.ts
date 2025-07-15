@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CommonModule } from '@angular/common';
 import { MutexService, MutexState } from './mutex.service';
+import { GlowSwitchComponent } from './glow-switch.component';
 
 @Component({
   selector: 'app-mutex-buttons',
   templateUrl: './mutex-buttons.component.html',
   styleUrls: ['./mutex-buttons.component.css'],
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatButtonToggleModule]
+  imports: [CommonModule, GlowSwitchComponent]
 })
 export class MutexButtonsComponent implements OnInit {
   panelOn = false;
@@ -28,9 +27,6 @@ export class MutexButtonsComponent implements OnInit {
 
   togglePower() {
     this.panelOn = !this.panelOn;
-    if (!this.panelOn) {
-      this.selectedInput = null;
-    }
     this.persistState();
   }
 
