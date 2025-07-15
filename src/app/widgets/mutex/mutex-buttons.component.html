@@ -1,19 +1,24 @@
-<div class="mutex-container">
-  <button class="power-button" (click)="togglePower()" aria-label="Power">
-    {{ panelOn ? 'Turn Off' : 'Turn On' }}
-  </button>
-
-  <div class="inputs" role="radiogroup" [attr.aria-disabled]="!panelOn">
-    <app-glow-switch
-      *ngFor="let input of inputs"
-      [name]="'inputs'"
-      [label]="input"
-      [value]="input"
-      [checked]="selectedInput === input"
-      [disabled]="!panelOn"
-      (changed)="chooseInput($event)"
-    ></app-glow-switch>
+<mat-card class="mutex-card" [class.disabled]="!panelOn">
+  <div class="mutex-container">
+    <button mat-raised-button color="primary" (click)="togglePower()" aria-label="Power toggle">
+      <mat-icon>{{ panelOn ? 'power_settings_new' : 'power_off' }}</mat-icon>
+      {{ panelOn ? 'Turn Off' : 'Turn On' }}
+    </button>
+    <div class="inputs" role="radiogroup">
+      <button
+        *ngFor="let input of inputs"
+        mat-fab-extended
+        [color]="selectedInput === input.label ? 'accent' : undefined"
+        [disabled]="!panelOn"
+        (click)="chooseInput(input.label)"
+        [attr.aria-label]="input.label"
+        [attr.aria-pressed]="selectedInput === input.label"
+        [ngClass]="{ selected: selectedInput === input.label }"
+      >
+        <mat-icon>{{ input.icon }}</mat-icon>
+        <span>{{ input.label }}</span>
+      </button>
+    </div>
+    <div class="status" aria-live="polite">{{ status }}</div>
   </div>
-
-  <div class="status" aria-live="polite">{{ status }}</div>
-</div>
+</mat-card>
