@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title>
+    Live Cryptocurrency Market Data — Powered by AG Grid and CoinGecko
+  </mat-card-title>
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="reload()" aria-label="Reload Data">
+      Reload Data
+    </button>
+    <button mat-raised-button color="accent" (click)="exportCsv()" aria-label="Export CSV">
+      Export CSV
+    </button>
+  </div>
+  <div class="grid-container" *ngIf="!loading && !error">
+    <ag-grid-angular
+      class="ag-theme-alpine"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [rowData]="rowData"
+      rowSelection="single"
+      [groupDisplayType]="'groupRows'"
+      [pagination]="true"
+      [paginationPageSize]="20"
+      [animateRows]="true"
+      (gridReady)="onGridReady($event)"
+      style="width: 100%; height: 600px;"
+    ></ag-grid-angular>
+  </div>
+  <div class="loading" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" aria-label="Loading"></mat-progress-spinner>
+  </div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+</mat-card>
