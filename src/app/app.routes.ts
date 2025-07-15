@@ -63,4 +63,11 @@ export const routes: Routes = [
         (m) => m.AgGridCryptoDemoComponent
       ),
   },
+  {
+    path: 'master-detail',
+    loadComponent: () =>
+      import('./widgets/master-detail/master-detail-grid.component').then(
+        (m) => m.MasterDetailGridComponent
+      ),
+  },
 ];

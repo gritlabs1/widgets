@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="list-column">
+    <mat-card class="grid-card">
+      <mat-card-title>Users</mat-card-title>
+      <div class="grid-wrapper" *ngIf="!loadingUsers; else loadingUsersTpl">
+        <ag-grid-angular
+          class="ag-theme-alpine"
+          [rowData]="users"
+          [columnDefs]="userColumnDefs"
+          [defaultColDef]="defaultColDef"
+          rowSelection="single"
+          (rowSelected)="onUserSelected($event)"
+          style="width: 100%; height: 300px;"
+        ></ag-grid-angular>
+      </div>
+      <ng-template #loadingUsersTpl>
+        <div class="loading"><mat-progress-spinner mode="indeterminate"></mat-progress-spinner></div>
+      </ng-template>
+    </mat-card>
+
+    <mat-card class="grid-card">
+      <mat-card-title>Posts</mat-card-title>
+      <div class="grid-wrapper" *ngIf="!loadingPosts; else loadingPostsTpl">
+        <ag-grid-angular
+          class="ag-theme-alpine"
+          [rowData]="posts"
+          [columnDefs]="postColumnDefs"
+          [defaultColDef]="defaultColDef"
+          rowSelection="single"
+          (rowSelected)="onPostSelected($event)"
+          style="width: 100%; height: 300px;"
+        ></ag-grid-angular>
+      </div>
+      <ng-template #loadingPostsTpl>
+        <div class="loading"><mat-progress-spinner mode="indeterminate"></mat-progress-spinner></div>
+      </ng-template>
+    </mat-card>
+  </div>
+
+  <mat-card class="detail-card" *ngIf="selectedPost">
+    <mat-card-title>{{ selectedPost.title }}</mat-card-title>
+    <mat-card-content>
+      <p>{{ selectedPost.body }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
