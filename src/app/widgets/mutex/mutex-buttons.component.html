@@ -1,18 +1,18 @@
 <div class="mutex-container">
-  <button mat-raised-button color="primary" (click)="togglePower()" aria-label="Power">
+  <button class="power-button" (click)="togglePower()" aria-label="Power">
     {{ panelOn ? 'Turn Off' : 'Turn On' }}
   </button>
 
-  <div class="inputs" *ngIf="panelOn">
-    <mat-button-toggle-group [value]="selectedInput" aria-label="Select input">
-      <mat-button-toggle
-        *ngFor="let input of inputs"
-        [value]="input"
-        (click)="chooseInput(input)"
-      >
-        {{ input }}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+  <div class="inputs" role="radiogroup" [attr.aria-disabled]="!panelOn">
+    <app-glow-switch
+      *ngFor="let input of inputs"
+      [name]="'inputs'"
+      [label]="input"
+      [value]="input"
+      [checked]="selectedInput === input"
+      [disabled]="!panelOn"
+      (changed)="chooseInput($event)"
+    ></app-glow-switch>
   </div>
 
   <div class="status" aria-live="polite">{{ status }}</div>

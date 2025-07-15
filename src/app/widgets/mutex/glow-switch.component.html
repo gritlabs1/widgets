@@ -1,0 +1,14 @@
+<label class="glow-switch">
+  <input
+    type="radio"
+    [name]="name"
+    [value]="value"
+    [checked]="checked"
+    [disabled]="disabled"
+    (change)="onChange()"
+  />
+  <span class="track">
+    <span class="thumb"></span>
+  </span>
+  <span class="switch-label">{{ label }}</span>
+</label>
