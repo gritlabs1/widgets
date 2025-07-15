@@ -45,6 +45,10 @@ jobs:
 
         # choose the correct host variable
         HOST=${SSH_HOST:-$DEPLOY_HOST}
+        
+        # Windows PowerShell command, executed over SSH:
+        ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no support@$HOST \
+        'powershell -Command "Remove-Item -Path \"C:/widgets/my-workspace/browser/*.js\",\"C:/widgets/my-workspace/browser/*.css\" -Force"'
 
         # Adjust path to your actual Angular output directory
         scp -o StrictHostKeyChecking=no -r ./dist/* \
